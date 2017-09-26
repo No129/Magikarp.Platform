@@ -1,0 +1,4 @@
+C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Defination.dll
+C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Defination.pdb
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Defination\obj\Debug\Magikarp.Platform.Defination.dll
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Defination\obj\Debug\Magikarp.Platform.Defination.pdb

@@ -1,0 +1,8 @@
+C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Behavior.MVP.dll.config
+C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Behavior.MVP.dll
+C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Behavior.MVP.pdb
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.MVP\obj\Debug\Behavior.MVP.csprojResolveAssemblyReference.cache
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.MVP\obj\Debug\Magikarp.Platform.Behavior.MVP.Properties.Resources.resources
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.MVP\obj\Debug\Behavior.MVP.csproj.GenerateResource.Cache
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.MVP\obj\Debug\Magikarp.Platform.Behavior.MVP.dll
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.MVP\obj\Debug\Magikarp.Platform.Behavior.MVP.pdb

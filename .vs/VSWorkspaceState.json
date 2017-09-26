@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Behavior",
+    "\\Behavior.Progress",
+    "\\Behavior.Progress\\_Source",
+    "\\Behavior\\_Source",
+    "\\Behavior\\_Source\\Flow",
+    "\\Defination",
+    "\\Defination\\_Source",
+    "\\Defination\\_Source\\_Enums"
+  ],
+  "SelectedNode": "\\Behavior\\_Source\\Flow\\CommandParser.cs",
+  "PreviewInSolutionExplorer": false
+}
