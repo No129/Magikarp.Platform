@@ -1,4 +1,5 @@
-﻿using Magikarp.Platform.Definition.MVP;
+﻿using Magikarp.Platform.Definition;
+using Magikarp.Platform.Definition.MVP;
 
 namespace Magikarp.Platform.Behavior.MVP
 {
@@ -7,10 +8,18 @@ namespace Magikarp.Platform.Behavior.MVP
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170926
+    /// Version: 20170927
     /// </remarks>
     public class DefaultModel : IModel
     {
+
+        #region -- 變數宣告 ( Declarations ) --   
+
+        string m_sDataModel = string.Empty;
+        IController m_objController = null;
+
+        #endregion
+
         #region -- 介面實做 ( Implements ) - [IModel] --
 
         /// <summary>
@@ -22,7 +31,11 @@ namespace Magikarp.Platform.Behavior.MVP
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
-        string IModel.DataModel { get; set; }
+        string IModel.DataModel
+        {
+            get { return this.m_sDataModel; }
+            set { this.m_sDataModel = value; }
+        }
 
         /// <summary>
         /// 設定系統流程控制器。( 採用唯寫模式以避免 Presenter 直接使用控制器執行命令 )
@@ -33,7 +46,7 @@ namespace Magikarp.Platform.Behavior.MVP
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
-        Platform.Definition.IController IModel.Controller { set { } }
+        IController IModel.Controller { set { this.m_objController = value; } }
 
         /// <summary>
         /// 執行資料處理。
@@ -42,10 +55,14 @@ namespace Magikarp.Platform.Behavior.MVP
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     提供預設功能。 (黃竣祥 2017/09/27)
         /// DB Object: N/A      
         /// </remarks>
-        void IModel.Execute(string pi_sCommand) { }
+        void IModel.Execute(string pi_sCommand)
+        {
+            this.m_sDataModel = this.m_objController.DispatchCommand(pi_sCommand, this.m_sDataModel);
+        }
 
         #endregion
     }
