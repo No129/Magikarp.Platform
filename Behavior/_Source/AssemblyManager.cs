@@ -13,7 +13,7 @@ namespace Magikarp.Platform.Behavior
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170926
+    /// Version: 20170927
     /// </remarks>
     public class AssemblyManager
     {
@@ -358,27 +358,28 @@ namespace Magikarp.Platform.Behavior
 
             return objReturn;
         }
-
-        #endregion
-
-        #region -- 屬性 ( Properties ) --
-
-        public AssemblyInfoModel ViewAssemblyInfoModel
+        
+        /// <summary>
+        /// 提供特定類別的組件資料集合。
+        /// </summary>
+        /// <param name="pi_nAssemblyType">指定組件所屬類別。</param>
+        /// <returns>特定類別的組件資料集合。</returns>
+        /// <remarks>
+        /// Author: 黃竣祥
+        /// Time: [Time]
+        /// History: N/A
+        /// DB Object: N/A      
+        /// </remarks>
+        public List<AssemblyInfoModel > FindAssemblyInfoModels(AssemblyTypeEnum pi_nAssemblyType)
         {
-            get
-            {
-                AssemblyInfoModel objReturn = null;
+            List<AssemblyInfoModel> objReturn =
+                (from KeyValuePair<string, AssemblyInfoModel> objPackage in this.l_objAssemblyCollection[pi_nAssemblyType]                
+                 select objPackage.Value).ToList();
 
-                if (this.l_objAssemblyCollection.ContainsKey(AssemblyTypeEnum.View))
-                {
-                    objReturn = this.l_objAssemblyCollection[AssemblyTypeEnum.View].Values.FirstOrDefault();
-                }
-
-                return objReturn;
-            }
+            return objReturn;
         }
 
-        #endregion
+        #endregion       
 
         #region -- 私有函式 ( Private Method) --
 

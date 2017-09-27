@@ -11,7 +11,7 @@ namespace Magikarp.Platform.Behavior.Flow
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170926
+    /// Version: 20170927
     /// </remarks>
     public class ViewHandler : BaseHandler
     {
@@ -56,7 +56,7 @@ namespace Magikarp.Platform.Behavior.Flow
                     case 3:// 判斷是否取得 ViewProvider 物件。                                             
                         if(objViewProvider == null)
                         {
-                            objViewProvider = new DefaultViewProvider(AssemblyManager.GetInstance().ViewAssemblyInfoModel);
+                            objViewProvider = new DefaultViewProvider(AssemblyManager.GetInstance().FindAssemblyInfoModels(AssemblyTypeEnum.View ));
                         }
                         break;
 

@@ -1,5 +1,4 @@
 C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Behavior.Progress.dll
 C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Behavior.Progress.pdb
-C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.Progress\obj\Debug\Behavior.Progress.csprojResolveAssemblyReference.cache
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.Progress\obj\Debug\Magikarp.Platform.Behavior.Progress.dll
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior.Progress\obj\Debug\Magikarp.Platform.Behavior.Progress.pdb

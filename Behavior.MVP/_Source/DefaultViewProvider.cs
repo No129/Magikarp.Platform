@@ -14,14 +14,14 @@ namespace Magikarp.Platform.Behavior.MVP
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170926
+    /// Version: 20170927
     /// </remarks>
     public class DefaultViewProvider : IViewProvider
     {
 
         #region -- 變數宣告 ( Declarations ) --   
 
-        private AssemblyInfoModel l_objViewAssembly = null;
+        private List<AssemblyInfoModel> l_objViewAssemblyInfoModels = null;
         private string l_sParameter = string.Empty;
         private string l_sFunctionName = string.Empty;
 
@@ -32,16 +32,16 @@ namespace Magikarp.Platform.Behavior.MVP
         /// <summary>
         /// 建構元。
         /// </summary>
-        /// <param name="pi_objViewAssembly">View 的組件資訊物件。</param>
+        /// <param name="pi_objViewAssemblyInfoModels">View 的組件資訊物件。</param>
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
-        public DefaultViewProvider(AssemblyInfoModel pi_objViewAssembly)
+        public DefaultViewProvider(List<AssemblyInfoModel> pi_objViewAssemblyInfoModels)
         {
-            this.l_objViewAssembly = pi_objViewAssembly;
+            this.l_objViewAssemblyInfoModels = pi_objViewAssemblyInfoModels;
         }
 
         #endregion
@@ -85,7 +85,8 @@ namespace Magikarp.Platform.Behavior.MVP
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     遍歷所有 View 組件以生成對應類別實體。(黃竣祥 2017/09/27)
         /// DB Object: N/A      
         /// </remarks>
         IView IViewProvider.GetViewInstance()
@@ -101,13 +102,14 @@ namespace Magikarp.Platform.Behavior.MVP
                 switch (nStep)
                 {
                     case 1:// 依 FunctionName 動態建立 ViewModel 實體。
-                        if (this.l_objViewAssembly != null)
+                        foreach(AssemblyInfoModel objModel in this.l_objViewAssemblyInfoModels)
                         {
-                            string sNamespace = this.l_objViewAssembly.Namespace;
+                            string sNamespace = objModel.Namespace;
                             string sFullName = String.Format("{0}.{1}ViewModel", sNamespace, this.l_sFunctionName);
 
-                            objReturn = (IView)this.l_objViewAssembly.Instance.CreateInstance(sFullName);
-                        }
+                            objReturn = (IView)objModel.Instance.CreateInstance(sFullName);
+                            if(objReturn != null) { break; }
+                        }                        
                         break;
 
                     case 2:// 判斷是否取得 ViewModel 實體。
