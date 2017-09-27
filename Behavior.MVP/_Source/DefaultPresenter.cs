@@ -12,13 +12,14 @@ namespace Magikarp.Platform.Behavior.MVP
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170926
+    /// Version: 20170927
     /// </remarks>
     public class DefaultPresenter : IPresenter
     {
         #region -- 變數宣告 ( Declarations ) --   
 
-        private IView l_objView = null;
+        private IView m_objView = null;
+        private IModel m_objModel = null;       
 
         #endregion
 
@@ -33,7 +34,10 @@ namespace Magikarp.Platform.Behavior.MVP
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
-        IModel IPresenter.Model { get; set; }
+        IModel IPresenter.Model {
+            get { return this.m_objModel; }
+            set { this.m_objModel = value; }
+        }
 
         /// <summary>
         /// 取得或設定 MVP 架構中對應操作的 View 執行個體。
@@ -46,8 +50,8 @@ namespace Magikarp.Platform.Behavior.MVP
         /// </remarks>
         IView IPresenter.View
         {
-            get { return this.l_objView; }
-            set { this.l_objView = value; }
+            get { return this.m_objView; }
+            set { this.m_objView = value; }
         }
 
         #endregion
@@ -62,12 +66,16 @@ namespace Magikarp.Platform.Behavior.MVP
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     提供一般化操作。 (黃竣祥 2017/09/27)
         /// DB Object: N/A      
         /// </remarks>
         string IViewPresenter.OnViewEvent(string pi_sParameter)
         {
-            throw new NotImplementedException();
+            this.m_objModel.DataModel = this.m_objView.DTO;
+            this.m_objModel.Execute(pi_sParameter);
+
+            return this.m_objModel.DataModel;
         }
 
         #endregion
@@ -87,7 +95,7 @@ namespace Magikarp.Platform.Behavior.MVP
         /// </remarks>
         string IModelPresenter.OnViewShow(string pi_sInitialData)
         {
-            return this.l_objView.ShowView();
+            return this.m_objView.ShowView();
         }
 
         #endregion

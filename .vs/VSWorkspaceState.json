@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Behavior",
-    "\\Behavior.Progress",
+    "\\Behavior.MVP\\_Source",
     "\\Behavior.Progress\\_Source",
     "\\Behavior\\_Source",
     "\\Behavior\\_Source\\Flow",
-    "\\Defination",
-    "\\Defination\\_Source",
-    "\\Defination\\_Source\\_Enums"
+    "\\Behavior\\_Source\\Flow\\_Handles",
+    "\\Behavior\\_Source\\Progress",
+    "\\Defination\\Properties",
+    "\\Defination\\_Source\\_Enums",
+    "\\Definition.MVP\\_Source"
   ],
-  "SelectedNode": "\\Behavior\\_Source\\Flow\\CommandParser.cs",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
