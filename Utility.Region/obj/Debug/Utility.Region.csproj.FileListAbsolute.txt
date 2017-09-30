@@ -1,0 +1,7 @@
+C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Utility.Region.dll
+C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Utility.Region.pdb
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Utility.Region\obj\Debug\Utility.Region.csprojResolveAssemblyReference.cache
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Utility.Region\obj\Debug\Utility.Region.csproj.CoreCompileInputs.cache
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Utility.Region\obj\Debug\Magikarp.Platform.Utility.Region.dll
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Utility.Region\obj\Debug\Magikarp.Platform.Utility.Region.pdb
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Utility.Region\obj\Debug\Magikarp.Platform.Utility.Region.g.resources

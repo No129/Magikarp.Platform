@@ -1,5 +1,6 @@
 C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Behavior.dll
 C:\_TOHU\Workspace\Magikarp\_Shared\Magikarp\Magikarp.Platform.Behavior.pdb
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior\obj\Debug\Behavior.csprojResolveAssemblyReference.cache
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior\obj\Debug\Behavior.csproj.CoreCompileInputs.cache
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior\obj\Debug\Magikarp.Platform.Behavior.dll
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\Behavior\obj\Debug\Magikarp.Platform.Behavior.pdb

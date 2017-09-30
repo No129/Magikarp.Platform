@@ -366,7 +366,7 @@ namespace Magikarp.Platform.Behavior
         /// <returns>特定類別的組件資料集合。</returns>
         /// <remarks>
         /// Author: 黃竣祥
-        /// Time: [Time]
+        /// Time: 2017/09/30
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
