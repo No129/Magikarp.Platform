@@ -10,7 +10,7 @@ namespace Magikarp.Platform.Utility.Region
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170930
+    /// Version: 20171003
     /// </remarks>
     public class TabRegion : IRegion
     {
@@ -65,7 +65,7 @@ namespace Magikarp.Platform.Utility.Region
             this.l_objTabItem.Header = objStackPanel;
             this.l_objTabItem.Tag = pi_sCaption;
         }
-       
+
         #endregion
 
         #region -- 事件處理 ( Event Handlers ) --
@@ -78,17 +78,14 @@ namespace Magikarp.Platform.Utility.Region
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/30
-        /// History: N/A
+        /// History: 
+        ///     納入清空容器的程序。 (黃竣祥 2017/10/03)
         /// DB Object: N/A      
         /// </remarks>
         private void OnMouseDown(System.Object pi_objSender, System.Windows.Input.MouseButtonEventArgs pi_objEventArgs)
         {
-            if(this.l_objContent is IView)
-            {
-                ((IView)this.l_objContent).ExitView();
-            }
-            this.l_objContent = null;
-            this.l_objTabItem.Content = null;
+            this.InitialContentStatus();            
+            this.l_objTabItem.Header = null;            
             this.l_objRegionManager.Remove(this);
         }
 
@@ -123,10 +120,38 @@ namespace Magikarp.Platform.Utility.Region
         /// </remarks>
         void IRegion.Add(IRegionContent pi_objContent)
         {
+            this.InitialContentStatus();
             this.l_objContent = pi_objContent;
             this.l_objTabItem.Content = pi_objContent.Content;
         }
 
-        #endregion      
+        #endregion
+
+        #region -- 私有函式 ( Private Method) --
+
+        /// <summary>
+        /// 初始內容物件狀態。
+        /// </summary>
+        /// <remarks>
+        /// Author: 黃竣祥
+        /// Time: 2017/10/03
+        /// History: N/A
+        /// DB Object: N/A      
+        /// </remarks>
+        private void InitialContentStatus()
+        {
+            if (this.l_objContent != null)
+            {
+                if (this.l_objContent is IView)
+                {
+                    ((IView)this.l_objContent).ExitView();
+                }
+                this.l_objContent = null;               
+                this.l_objTabItem.Content = null;                
+            }           
+        }
+
+        #endregion
+
     }
 }

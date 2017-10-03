@@ -12,14 +12,14 @@ namespace Magikarp.Platform.Behavior.MVP
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170927
+    /// Version: 20171003
     /// </remarks>
     public class DefaultPresenter : IPresenter
     {
         #region -- 變數宣告 ( Declarations ) --   
 
         private IView m_objView = null;
-        private IModel m_objModel = null;       
+        private IModel m_objModel = null;
 
         #endregion
 
@@ -34,7 +34,8 @@ namespace Magikarp.Platform.Behavior.MVP
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
-        IModel IPresenter.Model {
+        IModel IPresenter.Model
+        {
             get { return this.m_objModel; }
             set { this.m_objModel = value; }
         }
@@ -68,14 +69,33 @@ namespace Magikarp.Platform.Behavior.MVP
         /// Time: 2017/09/26
         /// History: 
         ///     提供一般化操作。 (黃竣祥 2017/09/27)
+        ///     增加對 Exit 命令的處理。 (黃竣祥 2017/10/03)
         /// DB Object: N/A      
         /// </remarks>
         string IViewPresenter.OnViewEvent(string pi_sParameter)
         {
-            this.m_objModel.DataModel = this.m_objView.DTO;
-            this.m_objModel.Execute(pi_sParameter);
+            string sReturn = string.Empty;
+          
+            if(Enum.TryParse<DefaultCommandEnum>(pi_sParameter, out DefaultCommandEnum nCommand))
+            {
+                switch (nCommand)
+                {
+                    case DefaultCommandEnum.Exit: // 離開視窗。
+                        this.m_objView = null;
+                        this.m_objModel.Execute(pi_sParameter);
+                        this.m_objModel = null;
+                        break;
+                }
+            }
+            else
+            {
+                this.m_objModel.DataModel = this.m_objView.DTO;
+                this.m_objModel.Execute(pi_sParameter);
 
-            return this.m_objModel.DataModel;
+                sReturn = this.m_objModel.DataModel;
+            }
+            
+            return sReturn;
         }
 
         #endregion
@@ -94,7 +114,7 @@ namespace Magikarp.Platform.Behavior.MVP
         /// DB Object: N/A      
         /// </remarks>
         string IModelPresenter.OnViewShow(string pi_sInitialData)
-        {
+        {            
             return this.m_objView.ShowView();
         }
 

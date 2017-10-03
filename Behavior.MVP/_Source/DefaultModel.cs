@@ -1,5 +1,6 @@
 ﻿using Magikarp.Platform.Definition;
 using Magikarp.Platform.Definition.MVP;
+using System;
 
 namespace Magikarp.Platform.Behavior.MVP
 {
@@ -8,7 +9,7 @@ namespace Magikarp.Platform.Behavior.MVP
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170927
+    /// Version: 20171003
     /// </remarks>
     public class DefaultModel : IModel
     {
@@ -57,11 +58,25 @@ namespace Magikarp.Platform.Behavior.MVP
         /// Time: 2017/09/26
         /// History: 
         ///     提供預設功能。 (黃竣祥 2017/09/27)
+        ///     增加對 Exit 命令的處理。 (黃竣祥 2017/10/03)
         /// DB Object: N/A      
         /// </remarks>
         void IModel.Execute(string pi_sCommand)
         {
-            this.m_sDataModel = this.m_objController.DispatchCommand(pi_sCommand, this.m_sDataModel);
+            if (Enum.TryParse<DefaultCommandEnum>(pi_sCommand, out DefaultCommandEnum nCommand))
+            {
+                switch (nCommand)
+                {
+                    case DefaultCommandEnum.Exit: // 離開視窗。
+                        this.m_sDataModel = string.Empty;
+                        this.m_objController = null;
+                        break;
+                }
+            }
+            else
+            {
+                this.m_sDataModel = this.m_objController.DispatchCommand(pi_sCommand, this.m_sDataModel);
+            }           
         }
 
         #endregion

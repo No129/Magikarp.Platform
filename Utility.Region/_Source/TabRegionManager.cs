@@ -9,7 +9,7 @@ namespace Magikarp.Platform.Utility.Region
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170930
+    /// Version: 20171003
     /// </remarks>
     public class TabRegionManager : IRegionManager
     {
@@ -107,7 +107,8 @@ namespace Magikarp.Platform.Utility.Region
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/30
-        /// History: N/A
+        /// History: 
+        ///     加上資料回收呼叫。 (黃竣祥 2017/10/03)
         /// DB Object: N/A      
         /// </remarks>
         void IRegionManager.Remove(IRegion pi_objRegion)
@@ -121,6 +122,7 @@ namespace Magikarp.Platform.Utility.Region
             {
                 this.l_objTabControl.Items.Remove(this.l_objRegions[sKeyIndex].TabItem);
                 this.l_objRegions.Remove(sKeyIndex);
+                System.GC.Collect();
             }
         }
 

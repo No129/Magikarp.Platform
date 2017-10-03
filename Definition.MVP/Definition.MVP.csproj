@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_Source\_Enum\DefaultCommandEnum.cs" />
     <Compile Include="_Source\IAbilityOfProgress.cs" />
     <Compile Include="_Source\IAbilityOfRefresh.cs" />
     <Compile Include="_Source\IModel.cs" />
