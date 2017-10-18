@@ -24,9 +24,7 @@
             <Label >About</Label>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Background="#757575" />
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Background="#545454" >
-            <Button Content="XBRL" Command="{Binding ViewCommand}" CommandParameter="Show_XBRL"/>
-        </StackPanel>
+        <StackPanel Name="FunctionEntryStackPanel" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Background="#545454" />
         <GridSplitter  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Width="3px"  />
         <Border Grid.Row="1" Grid.Column="2"  Margin="10" SnapsToDevicePixels="True" BorderThickness="2" CornerRadius="5" >
             <Grid Background="#ffffff">

@@ -12,3 +12,5 @@ C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Debug\UI.Entry.csproj
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Debug\UI.Entry.csproj.CoreCompileInputs.cache
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Debug\Magikarp.Platform.UI.Entry.dll
 C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Debug\Magikarp.Platform.UI.Entry.pdb
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Debug\_Source\FunctionEntryPanel.g.cs
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Debug\_Source\FunctionEntryPanel.baml

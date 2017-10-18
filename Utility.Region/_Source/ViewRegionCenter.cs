@@ -8,7 +8,7 @@ namespace Magikarp.Platform.Utility.Region
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: [Version]
+    /// Version: 20171018
     /// </remarks>
     public class ViewRegionCenter
     {

@@ -11,7 +11,7 @@ namespace Magikarp.Platform.UI.Entry
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170930
+    /// Version: 20171018
     /// </remarks>
     public class MainViewModel : IView
     {
@@ -152,13 +152,35 @@ namespace Magikarp.Platform.UI.Entry
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/30
-        /// History: N/A
+        /// History: 
+        ///     改以 FunctionEntryPanel 提供應用功能進入點。 (黃竣祥 2017/10/18)
         /// DB Object: N/A      
         /// </remarks>
         string IView.ShowView()
         {
             this.l_objView = new MainView();
             this.l_objView.DataContext = this;
+
+            FunctionEntryPanel objEmptyEntryPanel = new FunctionEntryPanel()
+            {
+                FunctionTitle = "POST",
+                FunctionDescription = "帳務金額計算。",
+                FunctionCommand = "Show_POST"
+            };
+            objEmptyEntryPanel.SetImage("");
+
+            FunctionEntryPanel objXBRLEntryPanel = new FunctionEntryPanel()
+            {
+                FunctionTitle = "XBRL",
+                FunctionDescription = "讀取 XBRL 定義檔，建立案例文件。",                             
+                FunctionCommand ="Show_XBRL"                
+            };
+            objXBRLEntryPanel.SetImage("/UI;component/_Images/XBRLKiosk_l.png");
+
+
+            this.l_objView.FunctionEntryStackPanel.Children.Add(objEmptyEntryPanel);
+            this.l_objView.FunctionEntryStackPanel.Children.Add(objXBRLEntryPanel);
+
             this.l_objRegionManager = this.InitialRegionManager(this.l_objView);
             this.l_objView.ShowDialog();
 

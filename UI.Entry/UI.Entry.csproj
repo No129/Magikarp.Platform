@@ -56,6 +56,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="_Source\FunctionEntryPanel.xaml.cs">
+      <DependentUpon>FunctionEntryPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="_Source\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -96,10 +99,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="_Source\FunctionEntryPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="_Source\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Images\EmptySetting.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
