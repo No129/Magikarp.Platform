@@ -6,7 +6,7 @@
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: [Version]
+    /// Version: 20171019
     /// </remarks>
     public class FunctionEntryModel
     {
@@ -18,7 +18,7 @@
         /// </summary>
         /// <remarks>
         /// Author: 黃竣祥
-        /// Time: [Time]
+        /// Time: 2017/10/19
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
@@ -29,7 +29,7 @@
         /// </summary>
         /// <remarks>
         /// Author: 黃竣祥
-        /// Time: [Time]
+        /// Time: 2017/10/19
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
@@ -40,7 +40,7 @@
         /// </summary>
         /// <remarks>
         /// Author: 黃竣祥
-        /// Time: [Time]
+        /// Time: 2017/10/19
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
@@ -51,7 +51,7 @@
         /// </summary>
         /// <remarks>
         /// Author: 黃竣祥
-        /// Time: [Time]
+        /// Time: 2017/10/19
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>

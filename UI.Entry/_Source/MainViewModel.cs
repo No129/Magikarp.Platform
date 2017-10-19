@@ -13,7 +13,7 @@ namespace Magikarp.Platform.UI.Entry
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: [version]
+    /// Version: 20171019
     /// </remarks>
     public class MainViewModel : IView
     {
@@ -104,7 +104,7 @@ namespace Magikarp.Platform.UI.Entry
         /// </summary>
         /// <remarks>
         /// Author: 黃竣祥
-        /// Time: [Time]
+        /// Time: 2017/10/19
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
@@ -167,7 +167,7 @@ namespace Magikarp.Platform.UI.Entry
         /// Time: 2017/09/30
         /// History: 
         ///     改以 FunctionEntryPanel 提供應用功能進入點。 (黃竣祥 2017/10/18)
-        ///     調整為透過 Binding 屬性建立應用功能進入點。 (黃竣祥 [Time])
+        ///     調整為透過 Binding 屬性建立應用功能進入點。 (黃竣祥 2017/10/19)
         /// DB Object: N/A      
         /// </remarks>
         string IView.ShowView()
