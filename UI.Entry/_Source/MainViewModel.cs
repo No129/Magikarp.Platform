@@ -1,7 +1,9 @@
-﻿using Magikarp.Platform.Definition.MVP;
+﻿using Magikarp.Platform.Definition;
+using Magikarp.Platform.Definition.MVP;
 using Magikarp.Platform.Utility.Region;
 using Magikarp.Utility.MVVM;
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace Magikarp.Platform.UI.Entry
@@ -11,7 +13,7 @@ namespace Magikarp.Platform.UI.Entry
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20171018
+    /// Version: [version]
     /// </remarks>
     public class MainViewModel : IView
     {
@@ -97,6 +99,17 @@ namespace Magikarp.Platform.UI.Entry
             get { return this.m_objRelayCommand; }
         }
 
+        /// <summary>
+        /// 設定或取得功能進入設定集合。
+        /// </summary>
+        /// <remarks>
+        /// Author: 黃竣祥
+        /// Time: [Time]
+        /// History: N/A
+        /// DB Object: N/A      
+        /// </remarks>
+        public List<EntryFunctionEntryModel> FunctionEntryModels { get; set; }
+
         #endregion
 
         #region -- 介面實做 ( Implements ) - [IView] --
@@ -154,32 +167,34 @@ namespace Magikarp.Platform.UI.Entry
         /// Time: 2017/09/30
         /// History: 
         ///     改以 FunctionEntryPanel 提供應用功能進入點。 (黃竣祥 2017/10/18)
+        ///     調整為透過 Binding 屬性建立應用功能進入點。 (黃竣祥 [Time])
         /// DB Object: N/A      
         /// </remarks>
         string IView.ShowView()
         {
+            List<EntryFunctionEntryModel> objModels = new List<EntryFunctionEntryModel>();
+
+            objModels.Add(new EntryFunctionEntryModel()
+            {
+                FunctionCommand = "Show_POST",
+                FunctionTitle = "過帳",
+                FunctionDescription = "帳務金額計算。"  ,              
+                ViewCommand= this.ViewCommand                 
+            });
+
+            objModels.Add(new EntryFunctionEntryModel()
+            {
+                FunctionCommand = "Show_XBRL",
+                FunctionTitle = "XBRL",
+                FunctionDescription = "讀取 XBRL 定義檔，建立案例文件。", 
+                FunctionImagePath= "/UI;component/_Images/XBRLKiosk_l.png",
+                ViewCommand = this.ViewCommand
+            });
+
+            this.FunctionEntryModels = objModels;
+            
             this.l_objView = new MainView();
             this.l_objView.DataContext = this;
-
-            FunctionEntryPanel objEmptyEntryPanel = new FunctionEntryPanel()
-            {
-                FunctionTitle = "POST",
-                FunctionDescription = "帳務金額計算。",
-                FunctionCommand = "Show_POST"
-            };
-            objEmptyEntryPanel.SetImage("");
-
-            FunctionEntryPanel objXBRLEntryPanel = new FunctionEntryPanel()
-            {
-                FunctionTitle = "XBRL",
-                FunctionDescription = "讀取 XBRL 定義檔，建立案例文件。",                             
-                FunctionCommand ="Show_XBRL"                
-            };
-            objXBRLEntryPanel.SetImage("/UI;component/_Images/XBRLKiosk_l.png");
-
-
-            this.l_objView.FunctionEntryStackPanel.Children.Add(objEmptyEntryPanel);
-            this.l_objView.FunctionEntryStackPanel.Children.Add(objXBRLEntryPanel);
 
             this.l_objRegionManager = this.InitialRegionManager(this.l_objView);
             this.l_objView.ShowDialog();

@@ -56,6 +56,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="_Source\EntryFunctionEntryModel.cs" />
     <Compile Include="_Source\FunctionEntryPanel.xaml.cs">
       <DependentUpon>FunctionEntryPanel.xaml</DependentUpon>
     </Compile>
@@ -89,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Defination\Definition.csproj">
+      <Project>{167844A5-CBA7-425B-8D33-2DA6A978E331}</Project>
+      <Name>Definition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Definition.MVP\Definition.MVP.csproj">
       <Project>{06DF14DE-BD2D-43EF-8A38-AD6D7D3B0C84}</Project>
       <Name>Definition.MVP</Name>

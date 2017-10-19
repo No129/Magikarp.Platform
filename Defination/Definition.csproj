@@ -46,6 +46,7 @@
     <Compile Include="_Source\Flow\ICommandOperator.cs" />
     <Compile Include="_Source\Flow\IRequestHandler.cs" />
     <Compile Include="_Source\Flow\OperatorMaskAttribute.cs" />
+    <Compile Include="_Source\FunctionEntryModel.cs" />
     <Compile Include="_Source\HandlerModel.cs" />
     <Compile Include="_Source\IController.cs" />
     <Compile Include="_Source\IPluginContainer.cs" />
