@@ -40,6 +40,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Shared\Magikarp\Magikarp.Utility.MVVM.dll</HintPath>
     </Reference>
+    <Reference Include="Magikarp.Utility.TransitData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Shared\Magikarp\Magikarp.Utility.TransitData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />

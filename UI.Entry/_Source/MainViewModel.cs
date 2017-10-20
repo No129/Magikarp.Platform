@@ -2,9 +2,11 @@
 using Magikarp.Platform.Definition.MVP;
 using Magikarp.Platform.Utility.Region;
 using Magikarp.Utility.MVVM;
+using Magikarp.Utility.TransitData;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace Magikarp.Platform.UI.Entry
 {
@@ -13,7 +15,7 @@ namespace Magikarp.Platform.UI.Entry
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20171019
+    /// Version: 20171020
     /// </remarks>
     public class MainViewModel : IView
     {
@@ -168,31 +170,25 @@ namespace Magikarp.Platform.UI.Entry
         /// History: 
         ///     改以 FunctionEntryPanel 提供應用功能進入點。 (黃竣祥 2017/10/18)
         ///     調整為透過 Binding 屬性建立應用功能進入點。 (黃竣祥 2017/10/19)
+        ///     調整為讀取傳入 DTO 的內容動態決定功能進入點。 (黃竣祥 2017/10/20)
         /// DB Object: N/A      
         /// </remarks>
         string IView.ShowView()
         {
+            TransitDataAdapter objAdapter = new TransitDataAdapter();
+            MainViewDTO objDTO = objAdapter.Loading<MainViewDTO>(this.m_sDTO);
             List<EntryFunctionEntryModel> objModels = new List<EntryFunctionEntryModel>();
 
-            objModels.Add(new EntryFunctionEntryModel()
+            foreach (XElement objElement in objDTO.FunctionEntryModels)
             {
-                FunctionCommand = "Show_POST",
-                FunctionTitle = "過帳",
-                FunctionDescription = "帳務金額計算。"  ,              
-                ViewCommand= this.ViewCommand                 
-            });
+                EntryFunctionEntryModel objModel = objAdapter.Loading<EntryFunctionEntryModel>(objElement.ToString());
 
-            objModels.Add(new EntryFunctionEntryModel()
-            {
-                FunctionCommand = "Show_XBRL",
-                FunctionTitle = "XBRL",
-                FunctionDescription = "讀取 XBRL 定義檔，建立案例文件。", 
-                FunctionImagePath= "/UI;component/_Images/XBRLKiosk_l.png",
-                ViewCommand = this.ViewCommand
-            });
+                objModel.ViewCommand = this.ViewCommand;
+                objModels.Add(objModel);
+            }
 
             this.FunctionEntryModels = objModels;
-            
+
             this.l_objView = new MainView();
             this.l_objView.DataContext = this;
 
