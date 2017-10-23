@@ -1,16 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Behavior.MVP\\_Source",
-    "\\Behavior.Progress\\_Source",
-    "\\Behavior\\_Source",
-    "\\Behavior\\_Source\\Flow",
-    "\\Behavior\\_Source\\Flow\\_Handles",
-    "\\Behavior\\_Source\\Progress",
-    "\\Defination\\Properties",
-    "\\Defination\\_Source\\_Enums",
-    "\\Definition.MVP\\_Source"
+    "\\UI.Entry",
+    "\\UI.Entry\\_Source"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\UI.Entry\\_Source\\SelectFileViewModel.cs",
   "PreviewInSolutionExplorer": false
 }

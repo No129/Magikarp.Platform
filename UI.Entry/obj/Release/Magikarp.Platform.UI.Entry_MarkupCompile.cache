@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Debug\
+C:\_TOHU\Workspace\Magikarp\Magikarp.Platform\UI.Entry\obj\Release\
 Magikarp.Platform.UI.Entry
 none
 false
-DEBUG;TRACE
+TRACE
 
 2337115487
 
 8-1718746796
-191281644444
+19-1379793614
 _Source\FunctionEntryPanel.xaml;_Source\MainView.xaml;
 
-False
+True
 
