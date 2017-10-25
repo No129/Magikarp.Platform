@@ -58,18 +58,21 @@ namespace Magikarp.Platform.Definition.Pakage
         /// </remarks>
         public FunctionEntryAttribute(string pi_sFunctionTitle, string pi_sFunctionDescription, string pi_sFunctionCommand, string pi_sFunctionImagePath)
         {
-            this.FunctionTitle = pi_sFunctionTitle;
-            this.FunctionDescription = pi_sFunctionDescription;
-            this.FunctionCommand = pi_sFunctionCommand;
-            this.FunctionImagePath = string.IsNullOrEmpty(pi_sFunctionImagePath) ? null : pi_sFunctionImagePath;
+            this.EntryModel = new FunctionEntryModel()
+            {
+                FunctionTitle = pi_sFunctionTitle,
+                FunctionDescription = pi_sFunctionDescription,
+                FunctionCommand = pi_sFunctionCommand,
+                FunctionImagePath = pi_sFunctionImagePath
+            };
         }
 
-        #endregion        
+        #endregion
 
         #region -- 屬性 ( Properties ) --
 
         /// <summary>
-        /// 取得及設定功能啟動命令。
+        /// 取得及設定功能入口資訊。
         /// </summary>
         /// <remarks>
         /// Author: 黃竣祥
@@ -77,40 +80,7 @@ namespace Magikarp.Platform.Definition.Pakage
         /// History: N/A
         /// DB Object: N/A      
         /// </remarks>
-        public string FunctionCommand { get; set; }
-
-        /// <summary>
-        /// 取得及設定功能名稱抬頭。
-        /// </summary>
-        /// <remarks>
-        /// Author: 黃竣祥
-        /// Time: 2017/10/25
-        /// History: N/A
-        /// DB Object: N/A      
-        /// </remarks>
-        public string FunctionTitle { get; set; }
-
-        /// <summary>
-        /// 取得及設定功能描述文字。
-        /// </summary>
-        /// <remarks>
-        /// Author: 黃竣祥
-        /// Time: 2017/10/25
-        /// History: N/A
-        /// DB Object: N/A      
-        /// </remarks>
-        public string FunctionDescription { get; set; }
-
-        /// <summary>
-        /// 取得及設定功能圖樣路徑。
-        /// </summary>
-        /// <remarks>
-        /// Author: 黃竣祥
-        /// Time: 2017/10/25
-        /// History: N/A
-        /// DB Object: N/A      
-        /// </remarks>
-        public virtual string FunctionImagePath { get; set; }
+        public FunctionEntryModel EntryModel { get; set; }
 
         #endregion
 
