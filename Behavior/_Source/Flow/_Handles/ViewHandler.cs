@@ -11,7 +11,7 @@ namespace Magikarp.Platform.Behavior.Flow
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170927
+    /// Version: 20171025
     /// </remarks>
     public class ViewHandler : BaseHandler
     {
@@ -25,7 +25,8 @@ namespace Magikarp.Platform.Behavior.Flow
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
         public override string GetResponse(string pi_sRequest)
@@ -50,13 +51,13 @@ namespace Magikarp.Platform.Behavior.Flow
                         break;
 
                     case 2:// 取得 ViewProvider 實體。
-                        objViewProvider = AssemblyManager.GetInstance().CreateProduct<IViewProvider>(objHandlerModel.FunctionName, "ViewProvider", AssemblyTypeEnum.View);
+                        objViewProvider = AssemblyManager.GetInstance().CreateProduct<IViewProvider>(objHandlerModel.FunctionName, "ViewProvider", AssemblyRoleEnum.View);
                         break;
 
                     case 3:// 判斷是否取得 ViewProvider 物件。                                             
                         if(objViewProvider == null)
                         {
-                            objViewProvider = new DefaultViewProvider(AssemblyManager.GetInstance().FindAssemblyInfoModels(AssemblyTypeEnum.View ));
+                            objViewProvider = new DefaultViewProvider(AssemblyManager.GetInstance().FindAssemblyInfoModels(AssemblyRoleEnum.View ));
                         }
                         break;
 
@@ -71,7 +72,7 @@ namespace Magikarp.Platform.Behavior.Flow
                         break;
 
                     case 6:// 建立對應的 Presenter 實體。
-                        objPresenter = AssemblyManager.GetInstance().CreateProduct<IPresenter>(objHandlerModel.FunctionName, "Presenter", AssemblyTypeEnum.Central);
+                        objPresenter = AssemblyManager.GetInstance().CreateProduct<IPresenter>(objHandlerModel.FunctionName, "Presenter", AssemblyRoleEnum.Central);
                         break;
 
                     case 7:// 判斷是否取得 Presenter 物件。                       
@@ -79,7 +80,7 @@ namespace Magikarp.Platform.Behavior.Flow
                         break;
 
                     case 8:// 取得對應的 Model 實體。
-                        objModel = AssemblyManager.GetInstance().CreateProduct<IModel>(objHandlerModel.FunctionName, "Model", AssemblyTypeEnum.Central);
+                        objModel = AssemblyManager.GetInstance().CreateProduct<IModel>(objHandlerModel.FunctionName, "Model", AssemblyRoleEnum.Central);
                         break;
 
                     case 9:// 判斷是否取得 Model 物件。                        

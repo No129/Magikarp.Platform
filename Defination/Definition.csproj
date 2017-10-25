@@ -51,8 +51,10 @@
     <Compile Include="_Source\IController.cs" />
     <Compile Include="_Source\IPluginContainer.cs" />
     <Compile Include="_Source\MainViewDTO.cs" />
+    <Compile Include="_Source\Pakage\AssemblyRoleAttribute.cs" />
+    <Compile Include="_Source\Pakage\FunctionEntryAttribute.cs" />
     <Compile Include="_Source\SelecteFileViewDTO.cs" />
-    <Compile Include="_Source\_Enums\AssemblyTypeEnum.cs" />
+    <Compile Include="_Source\_Enums\AssemblyRoleEnum.cs" />
     <Compile Include="_Source\_Enums\HandlerTypeEnum.cs" />
     <Compile Include="_Source\_Enums\MotionTypeEnum.cs" />
     <Compile Include="_Source\_Enums\ProgressLevelEnum.cs" />

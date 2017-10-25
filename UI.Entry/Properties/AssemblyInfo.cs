@@ -3,6 +3,11 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
+using Magikarp.Platform.Definition.Pakage;
+using Magikarp.Platform.Definition;
+
+// 設定工具函試參數。
+[assembly: AssemblyRole(AssemblyRoleEnum.View, "Magikarp.Platform.UI.Entry")]
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
