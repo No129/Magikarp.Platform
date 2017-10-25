@@ -63,7 +63,7 @@ namespace Magikarp.Platform.Definition.Pakage
                 FunctionTitle = pi_sFunctionTitle,
                 FunctionDescription = pi_sFunctionDescription,
                 FunctionCommand = pi_sFunctionCommand,
-                FunctionImagePath = pi_sFunctionImagePath
+                FunctionImagePath = string.IsNullOrEmpty(pi_sFunctionImagePath) ? null : pi_sFunctionImagePath
             };
         }
 
