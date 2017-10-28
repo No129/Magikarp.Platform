@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\UI.Entry",
     "\\UI.Entry\\_Source"
   ],
-  "SelectedNode": "\\UI.Entry\\_Source\\SelectFileViewModel.cs",
   "PreviewInSolutionExplorer": false
 }

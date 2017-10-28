@@ -1,6 +1,7 @@
 ﻿using Magikarp.Platform.Definition;
 using Magikarp.Platform.Definition.Environment;
 using Magikarp.Platform.Definition.Flow;
+using Magikarp.Platform.Definition.Pakage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Magikarp.Platform.Behavior
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170927
+    /// Version: 20171025
     /// </remarks>
     public class AssemblyManager
     {
@@ -23,7 +24,7 @@ namespace Magikarp.Platform.Behavior
         private static object l_objSyncObject = new object();
         private static AssemblyManager m_objAssemblyManager = null;
 
-        private Dictionary<AssemblyTypeEnum, Dictionary<string, AssemblyInfoModel>> l_objAssemblyCollection = new Dictionary<AssemblyTypeEnum, Dictionary<string, AssemblyInfoModel>>();
+        private Dictionary<AssemblyRoleEnum, Dictionary<string, AssemblyInfoModel>> l_objAssemblyCollection = new Dictionary<AssemblyRoleEnum, Dictionary<string, AssemblyInfoModel>>();
         private Dictionary<string, Dictionary<string, AssemblyInfoModel>> l_objCustomAssemblyCollection = new Dictionary<string, Dictionary<string, AssemblyInfoModel>>();
 
         #endregion
@@ -105,19 +106,70 @@ namespace Magikarp.Platform.Behavior
         /// <summary>
         /// 掛載組件實體。
         /// </summary>
+        /// <param name="pi_objTargetAssembly">待掛載組件實體。</param>
+        /// <remarks>
+        /// Author: 黃竣祥
+        /// Time: 2017/10/25
+        /// History: N/A
+        /// DB Object: N/A      
+        /// </remarks>
+        public void MountAssembly(System.Reflection.Assembly pi_objTargetAssembly)
+        {
+            object[] objAttributes = pi_objTargetAssembly.GetCustomAttributes(typeof(AssemblyRoleAttribute), false);
+
+            if (objAttributes != null)
+            {
+                List<object> objAssemblyRoleInfos = objAttributes.ToList<object>();
+
+                foreach (object objInfo in objAssemblyRoleInfos)
+                {
+                    AssemblyRoleAttribute objAssemblyRoleInfo = (AssemblyRoleAttribute)objInfo;
+                    AssemblyInfoModel objInfoModel = new AssemblyInfoModel()
+                    {
+                        Namespace = objAssemblyRoleInfo.AssemblyRootNamespace,
+                        Instance = pi_objTargetAssembly
+                    };
+
+                    this.MountAssembly(objAssemblyRoleInfo.AssemblyRole, objInfoModel);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 掛載組件實體。
+        /// </summary>
+        /// <param name="pi_objTargetAssemblys">待掛載組件實體集合。</param>
+        /// <remarks>
+        /// Author: 黃竣祥
+        /// Time: 2017/10/25
+        /// History: N/A
+        /// DB Object: N/A      
+        /// </remarks>
+        public void MountAssembly(List<System.Reflection.Assembly> pi_objTargetAssemblys)
+        {
+            foreach (System.Reflection.Assembly objAssembly in pi_objTargetAssemblys)
+            {
+                this.MountAssembly(objAssembly);
+            }
+        }
+
+        /// <summary>
+        /// 掛載組件實體。
+        /// </summary>
         /// <param name="pi_sAssemblyKey">掛載組件鍵值。</param>
         /// <param name="pi_objAssemblyInfo">掛載組件資料物件。</param>
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
         public void MountAssembly(string pi_sAssemblyKey, AssemblyInfoModel pi_objAssemblyInfo)
         {
-            AssemblyTypeEnum nAssemblyType = AssemblyTypeEnum.Central;
+            AssemblyRoleEnum nAssemblyType = AssemblyRoleEnum.Central;
             this.MountTextAssembly(pi_sAssemblyKey, pi_objAssemblyInfo);    // 掛載文字鍵值的組件清單。
-            if (Enum.TryParse<AssemblyTypeEnum>(pi_sAssemblyKey, out nAssemblyType))
+            if (Enum.TryParse<AssemblyRoleEnum>(pi_sAssemblyKey, out nAssemblyType))
             {
                 this.MountEunmAssembly(nAssemblyType, pi_objAssemblyInfo); // 掛載列舉清單。
             }
@@ -131,10 +183,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        public void MountAssembly(AssemblyTypeEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
+        public void MountAssembly(AssemblyRoleEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
         {
             this.MountEunmAssembly(pi_nAssemblyType, pi_objAssemblyInfo);           // 處理列舉掛載。
             this.MountTextAssembly(pi_nAssemblyType.ToString(), pi_objAssemblyInfo);// 處理文字掛載。
@@ -148,14 +201,15 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
         public void ResetAssembly(string pi_sAssemblyKey, AssemblyInfoModel pi_objAssemblyInfo)
         {
-            AssemblyTypeEnum nAssemblyType = AssemblyTypeEnum.Central;
+            AssemblyRoleEnum nAssemblyType = AssemblyRoleEnum.Central;
             this.ResetTextAssembly(pi_sAssemblyKey, pi_objAssemblyInfo);    // 重置文字鍵值的組件清單。
-            if (Enum.TryParse<AssemblyTypeEnum>(pi_sAssemblyKey, out nAssemblyType))
+            if (Enum.TryParse<AssemblyRoleEnum>(pi_sAssemblyKey, out nAssemblyType))
             {
                 this.ResetEnumAssembly(nAssemblyType, pi_objAssemblyInfo);  // 重置列舉鍵值的組件清單。
             }
@@ -169,10 +223,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        public void ResetAssembly(AssemblyTypeEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
+        public void ResetAssembly(AssemblyRoleEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
         {
             this.ResetEnumAssembly(pi_nAssemblyType, pi_objAssemblyInfo);
             this.ResetTextAssembly(pi_nAssemblyType.ToString(), pi_objAssemblyInfo);
@@ -185,12 +240,13 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
         public void UnmountAssembly(string pi_sAssemblyKey)
         {
-            AssemblyTypeEnum nAssemblyType = AssemblyTypeEnum.Central;
+            AssemblyRoleEnum nAssemblyType = AssemblyRoleEnum.Central;
 
             // 卸載文字組件實體。
             if (this.l_objCustomAssemblyCollection.ContainsKey(pi_sAssemblyKey))
@@ -198,7 +254,7 @@ namespace Magikarp.Platform.Behavior
                 this.l_objCustomAssemblyCollection.Remove(pi_sAssemblyKey);
             }
             // 卸載列舉組件實體。
-            if (Enum.TryParse<AssemblyTypeEnum>(pi_sAssemblyKey, out nAssemblyType))
+            if (Enum.TryParse<AssemblyRoleEnum>(pi_sAssemblyKey, out nAssemblyType))
             {
                 if (this.l_objAssemblyCollection.ContainsKey(nAssemblyType))
                 {
@@ -214,10 +270,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        public void UnmountAssembly(AssemblyTypeEnum pi_nAssemblyType)
+        public void UnmountAssembly(AssemblyRoleEnum pi_nAssemblyType)
         {
             if (this.l_objAssemblyCollection.ContainsKey(pi_nAssemblyType))
             {
@@ -306,10 +363,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        public TProduct CreateProduct<TProduct>(string pi_sFunctionName, string pi_sProductName, AssemblyTypeEnum pi_nAssemblyType, params object[] pi_objParameter)
+        public TProduct CreateProduct<TProduct>(string pi_sFunctionName, string pi_sProductName, AssemblyRoleEnum pi_nAssemblyType, params object[] pi_objParameter)
         {
             TProduct objReturn = default(TProduct);
             string sFunctionName = string.Empty;
@@ -358,7 +416,7 @@ namespace Magikarp.Platform.Behavior
 
             return objReturn;
         }
-        
+
         /// <summary>
         /// 提供特定類別的組件資料集合。
         /// </summary>
@@ -367,13 +425,14 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/30
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        public List<AssemblyInfoModel > FindAssemblyInfoModels(AssemblyTypeEnum pi_nAssemblyType)
+        public List<AssemblyInfoModel> FindAssemblyInfoModels(AssemblyRoleEnum pi_nAssemblyType)
         {
             List<AssemblyInfoModel> objReturn =
-                (from KeyValuePair<string, AssemblyInfoModel> objPackage in this.l_objAssemblyCollection[pi_nAssemblyType]                
+                (from KeyValuePair<string, AssemblyInfoModel> objPackage in this.l_objAssemblyCollection[pi_nAssemblyType]
                  select objPackage.Value).ToList();
 
             return objReturn;
@@ -423,10 +482,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        private void MountEunmAssembly(AssemblyTypeEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
+        private void MountEunmAssembly(AssemblyRoleEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
         {
             if (this.l_objAssemblyCollection.ContainsKey(pi_nAssemblyType) == false)
             {
@@ -488,10 +548,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        private void ResetEnumAssembly(AssemblyTypeEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
+        private void ResetEnumAssembly(AssemblyRoleEnum pi_nAssemblyType, AssemblyInfoModel pi_objAssemblyInfo)
         {
             if (this.l_objAssemblyCollection.ContainsKey(pi_nAssemblyType) == false)
             {
@@ -560,10 +621,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        private TProduct CreateProduct<TProduct>(AssemblyTypeEnum pi_nAssemblyType, string pi_sFunctionName)
+        private TProduct CreateProduct<TProduct>(AssemblyRoleEnum pi_nAssemblyType, string pi_sFunctionName)
         {
             return this.CreateInstance<TProduct>(pi_nAssemblyType, pi_sFunctionName, null);
         }
@@ -579,10 +641,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        private TProduct CreateProduct<TProduct>(AssemblyTypeEnum pi_nAssemblyType, string pi_sFunctionName, params object[] pi_objParameters)
+        private TProduct CreateProduct<TProduct>(AssemblyRoleEnum pi_nAssemblyType, string pi_sFunctionName, params object[] pi_objParameters)
         {
             return this.CreateInstance<TProduct>(pi_nAssemblyType, pi_sFunctionName, pi_objParameters);
         }
@@ -626,10 +689,11 @@ namespace Magikarp.Platform.Behavior
         /// <remarks>
         /// Author: 黃竣祥
         /// Time: 2017/09/26
-        /// History: N/A
+        /// History: 
+        ///     配合列舉名稱調整。(黃竣祥 2017/10/25)
         /// DB Object: N/A      
         /// </remarks>
-        private TProduct CreateInstance<TProduct>(AssemblyTypeEnum pi_nAssemblyType, string pi_sFunctionName, params object[] pi_objParameters)
+        private TProduct CreateInstance<TProduct>(AssemblyRoleEnum pi_nAssemblyType, string pi_sFunctionName, params object[] pi_objParameters)
         {
             TProduct objReturn = default(TProduct);
 

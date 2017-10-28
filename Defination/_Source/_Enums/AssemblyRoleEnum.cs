@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Magikarp.Platform.Definition
 {
     /// <summary>
-    /// 列舉受控組件型別。
+    /// 列舉受控組件角色。
     /// </summary>
     /// <remarks>
     /// Author: 黃竣祥
-    /// Version: 20170926
+    /// Version: 20171025
     /// </remarks>
-    public enum AssemblyTypeEnum
+    public enum AssemblyRoleEnum
     {
         /// <summary>
         /// 系統中控組件。

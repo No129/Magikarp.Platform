@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Magikarp.Utility.TransitData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Shared\Magikarp\Magikarp.Utility.TransitData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,8 +55,10 @@
     <Compile Include="_Source\IController.cs" />
     <Compile Include="_Source\IPluginContainer.cs" />
     <Compile Include="_Source\MainViewDTO.cs" />
+    <Compile Include="_Source\Pakage\AssemblyRoleAttribute.cs" />
+    <Compile Include="_Source\Pakage\FunctionEntryAttribute.cs" />
     <Compile Include="_Source\SelecteFileViewDTO.cs" />
-    <Compile Include="_Source\_Enums\AssemblyTypeEnum.cs" />
+    <Compile Include="_Source\_Enums\AssemblyRoleEnum.cs" />
     <Compile Include="_Source\_Enums\HandlerTypeEnum.cs" />
     <Compile Include="_Source\_Enums\MotionTypeEnum.cs" />
     <Compile Include="_Source\_Enums\ProgressLevelEnum.cs" />
